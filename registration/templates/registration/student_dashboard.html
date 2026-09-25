@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+    <h1>Student Dashboard</h1>
+
+    <p>Total Students: {{ total_students }}</p>
+
+    <h2>Students by Program</h2>
+    <ul>
+        {% for item in program_summary %}
+            <li>{{ item.program }}: {{ item.total }}</li>
+        {% empty %}
+            <li>No student records found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Students by Year Level</h2>
+    <ul>
+        {% for item in year_summary %}
+            <li>Year {{ item.year_level }}: {{ item.total }}</li>
+        {% empty %}
+            <li>No student records found.</li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        <a href="{% url 'student_list' %}">Back to Student List</a>
+    </p>
+
+</body>
+</html>
