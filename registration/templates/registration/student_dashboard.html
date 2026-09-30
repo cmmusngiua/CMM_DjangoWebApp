@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,23 @@
 
     <h1>Student Dashboard</h1>
 
-    <p>Total Students: {{ total_students }}</p>
+    <p>Total Students: <span id="student-count">{{ total_students }}</span></p>
+
+    <h2>Ajax Student Records</h2>
+    <p id="loading-message">Loading students...</p>
+    <p id="error-message"></p>
+    <table border="1" id="student-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Year Level</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="student-table-body"></tbody>
+    </table>
 
     <h2>Students by Program</h2>
     <ul>
@@ -30,6 +48,8 @@
     <p>
         <a href="{% url 'student_list' %}">Back to Student List</a>
     </p>
+
+<script src="{% static 'registration/js/student_dashboard.js' %}"></script>
 
 </body>
 </html>
