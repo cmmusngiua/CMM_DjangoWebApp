@@ -1,20 +1,36 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
 </head>
 <body>
-
     <h1>Student Dashboard</h1>
+    <hr>
 
-    <p>Total Students: <span id="student-count">{{ total_students }}</span></p>
+    <p>Total Students: <strong id="student-count">0</strong></p>
 
-    <h2>Ajax Student Records</h2>
+    <label for="student-search">Search by name or email:</label>
+    <input type="text" id="student-search" placeholder="Enter name or email">
+
+    <br><br>
+
+    <label for="program-filter">Filter by program:</label>
+    <select id="program-filter">
+        <option value="">All programs</option>
+    </select>
+
+    <button type="button" id="clear-filters">Clear Filters</button>
+    <button type="button" id="refresh-students">Refresh Data</button>
+
     <p id="loading-message">Loading students...</p>
-    <p id="error-message"></p>
-    <table border="1" id="student-table">
+    <p id="error-message" style="color: red;"></p>
+    <p id="result-count">Showing 0 of 0 students</p>
+
+    <table border="1" cellpadding="8">
         <thead>
             <tr>
                 <th>ID</th>
@@ -27,29 +43,6 @@
         <tbody id="student-table-body"></tbody>
     </table>
 
-    <h2>Students by Program</h2>
-    <ul>
-        {% for item in program_summary %}
-            <li>{{ item.program }}: {{ item.total }}</li>
-        {% empty %}
-            <li>No student records found.</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Students by Year Level</h2>
-    <ul>
-        {% for item in year_summary %}
-            <li>Year {{ item.year_level }}: {{ item.total }}</li>
-        {% empty %}
-            <li>No student records found.</li>
-        {% endfor %}
-    </ul>
-
-    <p>
-        <a href="{% url 'student_list' %}">Back to Student List</a>
-    </p>
-
-<script src="{% static 'registration/js/student_dashboard.js' %}"></script>
-
+    <script src="{% static 'registration/js/student_dashboard.js' %}"></script>
 </body>
 </html>
